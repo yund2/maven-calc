@@ -23,7 +23,6 @@
             <addClasspath>true</addClasspath>
             <classpathPrefix>lib/</classpathPrefix>
             <mainClass>pi.video.createWindow</mainClass>
-            <encoding>UTF-8</encoding>
           </manifest>
         </archive>
       </configuration>
