@@ -1,33 +1,41 @@
 package pi.video;
 //Подключение необходимых библиотек
 import java.awt.EventQueue;
+import java.awt.Window;
+
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.JPanel;
 
 //Объявление класса createWindow
 public class createWindow {
 
 	//Объявление переменных типа JFrame JTextField
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField widthText;
+	private JTextField heightText;
+	private JTextField colorText;
+	private JTextField fpsText;
+	private JTextField timeText;
+	private JTextField soundText;
+	private JTextField gzText;
+	private JTextField resultText;
 	//Объявление переменных класса
 	public static double[] calcValues = new double[7];
 	public static boolean error;
+	private JTextField passwordText;
+	public static final String ADMIN_PASSWORD = "admin";
 
 	//Метод main
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		EventQueue.invokeLater(new Runnable() {
 			//Паблик метод run включающий отображение главного фрейма
 			public void run() {
@@ -44,61 +52,62 @@ public class createWindow {
 	public createWindow() {
 		initialize();
 	}
+	
 	//Приватный метод initialize реализующий создание главного окна программы
-	private void initialize() {
+	public void initialize() {
 		
 		//Создаем фрейм и устанавливаем значение заголовка
 		frame = new JFrame();
 		frame.setTitle("\u041F\u0418 217");
-		frame.setBounds(100, 100, 460, 507);
+		frame.setBounds(100, 100, 462, 541);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		//*********************************************************\\
 		//Создаем textField-ы и устанавливаем значения по умолчанию\\
 		//*********************************************************\\
-		textField = new JTextField();
-		textField.setToolTipText("");
-		textField.setText("1280");
-		textField.setBounds(268, 77, 131, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		widthText = new JTextField();
+		widthText.setToolTipText("");
+		widthText.setText("1280");
+		widthText.setBounds(269, 123, 131, 20);
+		frame.getContentPane().add(widthText);
+		widthText.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setText("1024");
-		textField_1.setBounds(268, 108, 131, 20);
-		frame.getContentPane().add(textField_1);
+		heightText = new JTextField();
+		heightText.setColumns(10);
+		heightText.setText("1024");
+		heightText.setBounds(269, 154, 131, 20);
+		frame.getContentPane().add(heightText);
 		
-		textField_2 = new JTextField();
-		textField_2.setText("24");
-		textField_2.setColumns(10);
-		textField_2.setBounds(268, 139, 131, 20);
-		frame.getContentPane().add(textField_2);
+		colorText = new JTextField();
+		colorText.setText("24");
+		colorText.setColumns(10);
+		colorText.setBounds(269, 185, 131, 20);
+		frame.getContentPane().add(colorText);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setText("25");
-		textField_3.setBounds(268, 170, 131, 20);
-		frame.getContentPane().add(textField_3);
+		fpsText = new JTextField();
+		fpsText.setColumns(10);
+		fpsText.setText("25");
+		fpsText.setBounds(269, 216, 131, 20);
+		frame.getContentPane().add(fpsText);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setText("52");
-		textField_4.setBounds(268, 201, 131, 20);
-		frame.getContentPane().add(textField_4);
+		timeText = new JTextField();
+		timeText.setColumns(10);
+		timeText.setText("52");
+		timeText.setBounds(269, 247, 131, 20);
+		frame.getContentPane().add(timeText);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setText("16");
-		textField_5.setBounds(268, 232, 131, 20);
-		frame.getContentPane().add(textField_5);
+		soundText = new JTextField();
+		soundText.setColumns(10);
+		soundText.setText("16");
+		soundText.setBounds(269, 278, 131, 20);
+		frame.getContentPane().add(soundText);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setText("44100");
-		textField_6.setBounds(268, 263, 131, 20);
-		frame.getContentPane().add(textField_6);
+		gzText = new JTextField();
+		gzText.setColumns(10);
+		gzText.setText("44100");
+		gzText.setBounds(269, 309, 131, 20);
+		frame.getContentPane().add(gzText);
 		//*********************************************************\\
 		
 		
@@ -106,31 +115,31 @@ public class createWindow {
 		//Создаем лейблы\\
 		//**************\\
 		JLabel lblNewLabel = new JLabel("\u0428\u0438\u0440\u0438\u043D\u0430 \u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F (px)");
-		lblNewLabel.setBounds(54, 80, 150, 14);
+		lblNewLabel.setBounds(55, 126, 204, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblpx = new JLabel("\u0412\u044B\u0441\u043E\u0442\u0430 \u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F (px)");
-		lblpx.setBounds(54, 111, 150, 14);
+		lblpx.setBounds(55, 157, 204, 14);
 		frame.getContentPane().add(lblpx);
 		
 		JLabel label_1 = new JLabel("\u0413\u043B\u0443\u0431\u0438\u043D\u0430 \u0446\u0432\u0435\u0442\u0430 (\u0431\u0438\u0442)");
-		label_1.setBounds(54, 142, 150, 14);
+		label_1.setBounds(55, 188, 204, 14);
 		frame.getContentPane().add(label_1);
 		
 		JLabel label_2 = new JLabel("\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u0434\u0440\u043E\u0432 (\u0448\u0442)");
-		label_2.setBounds(54, 173, 150, 14);
+		label_2.setBounds(55, 219, 204, 14);
 		frame.getContentPane().add(label_2);
 		
 		JLabel label_3 = new JLabel("\u0414\u043B\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C \u0432\u0438\u0434\u0435\u043E (\u0441\u0435\u043A)");
-		label_3.setBounds(54, 204, 150, 14);
+		label_3.setBounds(55, 250, 204, 14);
 		frame.getContentPane().add(label_3);
 		
 		JLabel label_4 = new JLabel("\u0420\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0441\u0442\u044C \u0437\u0432\u0443\u043A\u0430 (\u0431\u0438\u0442)");
-		label_4.setBounds(54, 235, 150, 14);
+		label_4.setBounds(55, 281, 204, 14);
 		frame.getContentPane().add(label_4);
 		
 		JLabel label_5 = new JLabel("\u0427\u0430\u0441\u0442\u043E\u0442\u0430 \u0434\u0438\u0441\u043A\u0440\u0435\u0442\u0438\u0437\u0430\u0446\u0438\u0438 (\u0413\u0446)");
-		label_5.setBounds(54, 266, 150, 14);
+		label_5.setBounds(55, 312, 204, 14);
 		frame.getContentPane().add(label_5);
 		//*********************************************************\\
 		
@@ -171,34 +180,80 @@ public class createWindow {
 					//Создаем экземпляр класса calculate
 					Calculate calculate = new Calculate();
 					//Выводим значение полученное в классе Calculate в текстовое поле
-					textField_7.setText((calculate.toFormateResult()));	
+					resultText.setText((calculate.toFormateResult()));	
 				}
 			}
 		});
-		btnNewButton.setBounds(268, 310, 131, 23);
+		btnNewButton.setBounds(269, 356, 131, 23);
 		frame.getContentPane().add(btnNewButton);
 		
 	    //Создание текстового поля
-		textField_7 = new JTextField();
-		textField_7.setBounds(268, 360, 131, 20);
-		frame.getContentPane().add(textField_7);
-		textField_7.setColumns(10);
+		resultText = new JTextField();
+		resultText.setBounds(269, 406, 131, 20);
+		frame.getContentPane().add(resultText);
+		resultText.setColumns(10);
 		
 		//Создание лейбла
 		JLabel lblNewLabel_1 = new JLabel("\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442:");
-		lblNewLabel_1.setBounds(141, 363, 63, 14);
+		lblNewLabel_1.setBounds(142, 409, 117, 14);
 		frame.getContentPane().add(lblNewLabel_1);
+		
+		final JPanel passwordPanel = new JPanel();
+		passwordPanel.setBounds(21, 11, 398, 88);
+		frame.getContentPane().add(passwordPanel);
+		passwordPanel.setLayout(null);
+		
+		JLabel passwordLabel = new JLabel("Пароль администратора:");
+		passwordLabel.setBounds(34, 28, 128, 14);
+		passwordPanel.add(passwordLabel);
+		
+		passwordText = new JTextField();
+		passwordText.setText("admin");
+		passwordText.setBounds(247, 25, 128, 20);
+		passwordPanel.add(passwordText);
+		passwordText.setColumns(10);
+		
+		final JButton reportButton = new JButton("Сформировать отчет");
+		reportButton.setVisible(false);
+		reportButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//JOptionPane.showMessageDialog(null, "1", "Отчет", JOptionPane.INFORMATION_MESSAGE);
+				try {
+					showReport();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		reportButton.setBounds(202, 438, 198, 23);
+		frame.getContentPane().add(reportButton);
+		
+		JButton passwordButton = new JButton("Войти");
+		passwordButton.setBounds(247, 54, 128, 23);
+		passwordPanel.add(passwordButton);
+		passwordButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (passwordText.getText().equals(ADMIN_PASSWORD)) {
+					passwordPanel.setVisible(false);
+					reportButton.setVisible(true);
+				}
+					
+			}
+		});
+		passwordButton.setBackground(Color.PINK);
+		passwordButton.setForeground(Color.DARK_GRAY);
 	}
 	
 	//Метод setArrayValues реализующий добавление значений из textField-ов в массив
 	public void setArrayValues() {
-		calcValues[0] = Integer.parseInt(textField.getText());
-		calcValues[1] = Integer.parseInt(textField_1.getText());
-		calcValues[2] = Integer.parseInt(textField_2.getText());
-		calcValues[3] = Integer.parseInt(textField_3.getText());
-		calcValues[4] = Integer.parseInt(textField_4.getText());
-		calcValues[5] = Integer.parseInt(textField_5.getText());
-		calcValues[6] = Integer.parseInt(textField_6.getText());
+		calcValues[0] = Integer.parseInt(widthText.getText());
+		calcValues[1] = Integer.parseInt(heightText.getText());
+		calcValues[2] = Integer.parseInt(colorText.getText());
+		calcValues[3] = Integer.parseInt(fpsText.getText());
+		calcValues[4] = Integer.parseInt(timeText.getText());
+		calcValues[5] = Integer.parseInt(soundText.getText());
+		calcValues[6] = Integer.parseInt(gzText.getText());
 	}
 	
 	public static boolean isNumeric(String str)  
@@ -215,13 +270,13 @@ public class createWindow {
 	}
 	
 	public boolean isNumericValues() {
-		if (	!isNumeric(textField.getText())   ||
-				!isNumeric(textField_1.getText()) ||
-				!isNumeric(textField_2.getText()) ||
-				!isNumeric(textField_3.getText()) ||
-				!isNumeric(textField_4.getText()) ||
-				!isNumeric(textField_5.getText()) ||
-				!isNumeric(textField_6.getText()) )
+		if (	!isNumeric(widthText.getText())   ||
+				!isNumeric(heightText.getText()) ||
+				!isNumeric(colorText.getText()) ||
+				!isNumeric(fpsText.getText()) ||
+				!isNumeric(timeText.getText()) ||
+				!isNumeric(soundText.getText()) ||
+				!isNumeric(gzText.getText()) )
 			return false;
 		else
 			return true;
@@ -235,14 +290,14 @@ public class createWindow {
 	//Метод isTextFieldEmpty реализующий проверку textField-ов на пустоту
 	public boolean isTextFieldEmpty() {
 		//getText() - берет текст из текстового поля, trim() - удаляет пробелы, isEmpty() - проверяет пустое значение или нет
-		if(		textField.getText().trim().isEmpty()   ||
-				textField_1.getText().trim().isEmpty() ||
-				textField_2.getText().trim().isEmpty() ||
-				textField_3.getText().trim().isEmpty() ||
-				textField_4.getText().trim().isEmpty() ||
-				textField_5.getText().trim().isEmpty() ||
-				textField_6.getText().trim().isEmpty() ||
-				textField.getText().trim().isEmpty()) 
+		if(		widthText.getText().trim().isEmpty()   ||
+				heightText.getText().trim().isEmpty() ||
+				colorText.getText().trim().isEmpty() ||
+				fpsText.getText().trim().isEmpty() ||
+				timeText.getText().trim().isEmpty() ||
+				soundText.getText().trim().isEmpty() ||
+				gzText.getText().trim().isEmpty() ||
+				widthText.getText().trim().isEmpty()) 
 		{
 			return true;
 		} else
@@ -257,5 +312,19 @@ public class createWindow {
 		 else
 			er = false ;
 		return er;
+	}
+	
+	public void showReport() throws Exception {
+		FileWriter nFile = new FileWriter("file1.txt");
+        nFile.write("Ширина изображения: " + widthText.getText() + "\n" +
+        			"Высота изображения: " + heightText.getText() + "\n" +
+        			"Глубина цвета: " + colorText.getText() + "\n" +
+        			"Количество кадров: " + fpsText.getText() + "\n" +
+        			"Длительность видео: " + timeText.getText() + "\n" +
+        			"Разрядность звука: " + soundText.getText() + "\n" +
+        			"Частота дискретизации: " + gzText.getText() + "\n" +
+        			"----------------------------------------------\n" +
+        			"Результат " + resultText.getText() + "\n");
+        nFile.close();
 	}
 }
