@@ -58,7 +58,7 @@ public class createWindow {
 		
 		//Создаем фрейм и устанавливаем значение заголовка
 		frame = new JFrame();
-		frame.setTitle("\u041F\u0418 217");
+		frame.setTitle("ПИ 217");
 		frame.setBounds(100, 100, 462, 541);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -114,39 +114,39 @@ public class createWindow {
 		//**************\\
 		//Создаем лейблы\\
 		//**************\\
-		JLabel lblNewLabel = new JLabel("\u0428\u0438\u0440\u0438\u043D\u0430 \u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F (px)");
-		lblNewLabel.setBounds(55, 126, 204, 14);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel widthLabel = new JLabel("Ширина изображения (px)");
+		widthLabel.setBounds(55, 126, 204, 14);
+		frame.getContentPane().add(widthLabel);
 		
-		JLabel lblpx = new JLabel("\u0412\u044B\u0441\u043E\u0442\u0430 \u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F (px)");
-		lblpx.setBounds(55, 157, 204, 14);
-		frame.getContentPane().add(lblpx);
+		JLabel heightLabel = new JLabel("Высота изображения (px)");
+		heightLabel.setBounds(55, 157, 204, 14);
+		frame.getContentPane().add(heightLabel);
 		
-		JLabel label_1 = new JLabel("\u0413\u043B\u0443\u0431\u0438\u043D\u0430 \u0446\u0432\u0435\u0442\u0430 (\u0431\u0438\u0442)");
-		label_1.setBounds(55, 188, 204, 14);
-		frame.getContentPane().add(label_1);
+		JLabel colorLabel = new JLabel("Глубина цвета (бит)");
+		colorLabel.setBounds(55, 188, 204, 14);
+		frame.getContentPane().add(colorLabel);
 		
-		JLabel label_2 = new JLabel("\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043A\u0430\u0434\u0440\u043E\u0432 (\u0448\u0442)");
-		label_2.setBounds(55, 219, 204, 14);
-		frame.getContentPane().add(label_2);
+		JLabel fpsLabel = new JLabel("Количество кадров (шт)");
+		fpsLabel.setBounds(55, 219, 204, 14);
+		frame.getContentPane().add(fpsLabel);
 		
-		JLabel label_3 = new JLabel("\u0414\u043B\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C \u0432\u0438\u0434\u0435\u043E (\u0441\u0435\u043A)");
-		label_3.setBounds(55, 250, 204, 14);
-		frame.getContentPane().add(label_3);
+		JLabel timeLabel = new JLabel("Длительность видео (сек)");
+		timeLabel.setBounds(55, 250, 204, 14);
+		frame.getContentPane().add(timeLabel);
 		
-		JLabel label_4 = new JLabel("\u0420\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0441\u0442\u044C \u0437\u0432\u0443\u043A\u0430 (\u0431\u0438\u0442)");
-		label_4.setBounds(55, 281, 204, 14);
-		frame.getContentPane().add(label_4);
+		JLabel soundLabel = new JLabel("Разрядность звука (бит)");
+		soundLabel.setBounds(55, 281, 204, 14);
+		frame.getContentPane().add(soundLabel);
 		
-		JLabel label_5 = new JLabel("\u0427\u0430\u0441\u0442\u043E\u0442\u0430 \u0434\u0438\u0441\u043A\u0440\u0435\u0442\u0438\u0437\u0430\u0446\u0438\u0438 (\u0413\u0446)");
-		label_5.setBounds(55, 312, 204, 14);
-		frame.getContentPane().add(label_5);
+		JLabel gzLabel = new JLabel("Частота дискретизации (Гц)");
+		gzLabel.setBounds(55, 312, 204, 14);
+		frame.getContentPane().add(gzLabel);
 		//*********************************************************\\
 		
 		//Создаем кнопку
-		JButton btnNewButton = new JButton("\u0420\u0430\u0441\u0441\u0447\u0438\u0442\u0430\u0442\u044C");
+		JButton resultButton = new JButton("Рассчитать");
 		//Создаем слушатель для кнопки
-		btnNewButton.addActionListener(new ActionListener() {
+		resultButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Проверка textField-ов на пустоту
 				if(isTextFieldEmpty())
@@ -184,8 +184,8 @@ public class createWindow {
 				}
 			}
 		});
-		btnNewButton.setBounds(269, 356, 131, 23);
-		frame.getContentPane().add(btnNewButton);
+		resultButton.setBounds(269, 356, 131, 23);
+		frame.getContentPane().add(resultButton);
 		
 	    //Создание текстового поля
 		resultText = new JTextField();
@@ -194,9 +194,9 @@ public class createWindow {
 		resultText.setColumns(10);
 		
 		//Создание лейбла
-		JLabel lblNewLabel_1 = new JLabel("\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442:");
-		lblNewLabel_1.setBounds(142, 409, 117, 14);
-		frame.getContentPane().add(lblNewLabel_1);
+		JLabel resultLabel = new JLabel("Результат:");
+		resultLabel.setBounds(142, 409, 117, 14);
+		frame.getContentPane().add(resultLabel);
 		
 		final JPanel passwordPanel = new JPanel();
 		passwordPanel.setBounds(21, 11, 398, 88);
@@ -217,11 +217,9 @@ public class createWindow {
 		reportButton.setVisible(false);
 		reportButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//JOptionPane.showMessageDialog(null, "1", "Отчет", JOptionPane.INFORMATION_MESSAGE);
 				try {
 					showReport();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
