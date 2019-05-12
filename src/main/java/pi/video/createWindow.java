@@ -174,7 +174,7 @@ public class createWindow {
 				}
 				//Если значение переменной error - истина, выводим окно с сообщением об ошибке
 				if (error == true) {
-					JOptionPane.showMessageDialog(null, "Введите положительные значения", "Ошибка", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Введите положительные значения\nКалькулятор не поддерживает значения больше 1000000", "Ошибка", JOptionPane.WARNING_MESSAGE);
 				} else {
 				//Иначе выполняем вычисления в классе Calculate
 					//Создаем экземпляр класса calculate
@@ -305,10 +305,10 @@ public class createWindow {
 	//Метод toValidate реализующий проверку значений на положительность
 	public boolean toValidate(double textFieldValue) {
 		boolean er;
-		if (textFieldValue <= 0 ) 
+		if (textFieldValue <= 0 || textFieldValue >= 1000000) 
 			er= true;
 		 else
-			er = false ;
+			er = false;
 		return er;
 	}
 	
