@@ -5,12 +5,6 @@ public class Calculate {
 	public static double result;
 	//Объявляем метод toCalculate() типа double
 	public static double toCalculate(double[] arrayOfValues) {
-		//Создаем экземпляр window класса createWindow
-	    //createWindow window = new createWindow();
-	    //Объявляем массив arrayOfValues типа double c 7 ячейками
-	    //double[] arrayOfValues = new double[7];
-	    //Заполняем массив данными полученными из метода getArrayOfValues класса createWindow
-	    //arrayOfValues = window.getArrayOfValues();
 	    //Задаем начальное значение переменной result
 	    result = 1;
 	    

@@ -313,7 +313,7 @@ public class createWindow {
 	}
 	
 	public void showReport() throws Exception {
-		FileWriter nFile = new FileWriter("file1.txt");
+		FileWriter nFile = new FileWriter("Отчет.txt");
         nFile.write("Ширина изображения: " + widthText.getText() + "\n" +
         			"Высота изображения: " + heightText.getText() + "\n" +
         			"Глубина цвета: " + colorText.getText() + "\n" +
