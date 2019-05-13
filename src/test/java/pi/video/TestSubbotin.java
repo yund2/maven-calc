@@ -16,7 +16,7 @@ public class TestSubbotin {
 		 * Подставляет тестовые значения в метод toCalculate, который рассчитывает
 		 * количество памяти в неформатированном виде
 		 * После чего результат сравнивается с ожидаемым значением*/
-		assertTrue(Calculate.toCalculate(testValues1) == 10396.179277449846);
+		assertTrue(Calculate.toCalculate(testValues1) == 11396.179277449846);
 	}
 	
 }
