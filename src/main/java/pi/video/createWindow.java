@@ -1,8 +1,20 @@
 package pi.video;
-//Подключение необходимых библиотек
+/*Подключение необходимых библиотек
+ * javax.swing.JFrame    		 - JFrame, представляющий собой окно с рамкой и строкой заголовка (с кнопками «Свернуть», «Во весь экран» и «Закрыть»). 
+ * 								   Оно может изменять размеры и перемещаться по экрану.
+ * javax.swing.JTextField  		 - JTextField, представляющий собой однострочное поле для ввода текста.
+ * javax.swing.JLabel  			 - JLabel, представляющий собой поле для отображения текста или иконки.
+ * javax.swing.JOptionPane 		 - JOptionPane позволяющий вызывать однин из многочисленных статических методов, создающих и выводящих на экран модальное диалоговое окно стандартного вида.
+ * javax.swing.JButton 			 - JButton Кнопка
+ * java.awt.event.ActionEvent;
+ * java.awt.event.ActionListener - Событие Event - это объект, описывающий изменение состояния источника, с которым оно связано. 
+ * 								   Примером события, в котором участвует пользователь, являются нажатие кнопки, выбор элемента из списка, ввод символа с клавиатуры и т.д. 
+ * 								   Слушатель Listener - это уведомляемый о некотором событии объект. 
+ * java.io.FileWriter 			 - используется для записи потоков символов.
+ * java.awt.Color 				 - классе Color определяется несколько констант (вроде Color.black) для описания наиболее употребительных используемых цветов.
+ * javax.swing.JPanel 			 - панель контейнер, которая может содержать другие элементы (кнопки, текстовые поля и т.д.)
+ */
 import java.awt.EventQueue;
-import java.awt.Window;
-
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -10,15 +22,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 //Объявление класса createWindow
 public class createWindow {
 
-	//Объявление переменных типа JFrame JTextField
+	//Объявление переменных типа JFrame и JTextField
 	private JFrame frame;
 	private JTextField widthText;
 	private JTextField heightText;
@@ -28,16 +40,20 @@ public class createWindow {
 	private JTextField soundText;
 	private JTextField gzText;
 	private JTextField resultText;
-	//Объявление переменных класса
+	private JTextField passwordText;
+	/* Объявление глобальных переменных класса
+	 * calcValues     - переменная содержащая валидные значения из всех текстовых полей окна калькулятора
+	 * error          - логическая переменная содержащая результат проверки введенных значений на валидность
+	 * ADMIN_PASSWORD - константа содержащая пароль администратора
+	 */
 	public static double[] calcValues = new double[7];
 	public static boolean error;
-	private JTextField passwordText;
 	public static final String ADMIN_PASSWORD = "admin";
 
-	//Метод main
+	//Метод main который запускает работу программы
 	public static void main(String[] args) throws Exception {
 		EventQueue.invokeLater(new Runnable() {
-			//Паблик метод run включающий отображение главного фрейма
+			//Метод run включающий отображение главного фрейма
 			public void run() {
 				//Создание экземпляра класса createWindow
 				createWindow window = new createWindow();
@@ -56,18 +72,28 @@ public class createWindow {
 	//Приватный метод initialize реализующий создание главного окна программы
 	public void initialize() {
 		
-		//Создаем фрейм и устанавливаем значение заголовка
+		/*
+		 * Создаем фрейм и устанавливаем значение заголовка
+		 * setTitle() 					- устанавливает текстовое значение заголовка окна
+		 * setBounds() 					- устанавливает положение окна и его размеры
+		 * setDefaultCloseOperation() 	- позволяет указать действие, которое необходимо выполнить, когда пользователь закрывает окно нажатием на крестик.
+		 * getContentPane() 			- обращение к области контента. setLayout() - установка лейаута
+		 */
 		frame = new JFrame();
 		frame.setTitle("ПИ 217");
 		frame.setBounds(100, 100, 462, 541);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		//*********************************************************\\
-		//Создаем textField-ы и устанавливаем значения по умолчанию\\
-		//*********************************************************\\
+		
+		/*
+		 * Создаем textField-ы и устанавливаем значения по умолчанию
+		 * setText() 				- запись значения в элемент
+		 * setBounds() 				- устанавливает положение элемента и его размеры
+		 * getContentPane().add() 	- добавление элемента в окно программы
+		 * setColumns() 			- изменение длинны строки
+		 */
 		widthText = new JTextField();
-		widthText.setToolTipText("");
 		widthText.setText("1280");
 		widthText.setBounds(269, 123, 131, 20);
 		frame.getContentPane().add(widthText);
@@ -108,12 +134,14 @@ public class createWindow {
 		gzText.setText("44100");
 		gzText.setBounds(269, 309, 131, 20);
 		frame.getContentPane().add(gzText);
-		//*********************************************************\\
+
 		
 		
-		//**************\\
-		//Создаем лейблы\\
-		//**************\\
+		/*
+		 * Создаем надписи (лейблы)
+		 * setBounds() 				- устанавливает положение элемента и его размеры
+		 * getContentPane().add() 	- добавление элемента в окно программы
+		 */
 		JLabel widthLabel = new JLabel("Ширина изображения (px)");
 		widthLabel.setBounds(55, 126, 204, 14);
 		frame.getContentPane().add(widthLabel);
@@ -163,7 +191,7 @@ public class createWindow {
 				
 				//Устанавливаем значение по умолчанию для переменной error информирующей об ошибке в заполнении полей
 				error = false;
-				//Проходимся циклом по всем значениям массива calcValues
+				//Проходим циклом по всем значениям массива calcValues
 				for(int i = 0; i < 7; i++) {
 					//Проверяем значения массива методом toValidate
 					if(toValidate(calcValues[i]) == true) {
@@ -187,7 +215,11 @@ public class createWindow {
 		resultButton.setBounds(269, 356, 131, 23);
 		frame.getContentPane().add(resultButton);
 		
-	    //Создание текстового поля
+	    /* Создание текстового поля
+		 * setBounds() 				- устанавливает положение элемента и его размеры
+		 * getContentPane().add() 	- добавление элемента в окно программы
+		 * setColumns() 			- изменение длинны строки
+		 */
 		resultText = new JTextField();
 		resultText.setBounds(269, 406, 131, 20);
 		frame.getContentPane().add(resultText);
@@ -207,17 +239,23 @@ public class createWindow {
 		passwordLabel.setBounds(34, 28, 128, 14);
 		passwordPanel.add(passwordLabel);
 		
-		passwordText = new JTextField();
+		/* Создание текстового поля для ввода паролей */
+		passwordText = new JPasswordField();
 		passwordText.setText("admin");
 		passwordText.setBounds(247, 25, 128, 20);
 		passwordPanel.add(passwordText);
 		passwordText.setColumns(10);
 		
+		/* Создание кнопки для формирование отчета
+		 * setVisible(false) - делает кнопку невидимой
+		 */
 		final JButton reportButton = new JButton("Сформировать отчет");
 		reportButton.setVisible(false);
+		/* Создаем слушатель для кнопки */
 		reportButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					/*Вызов метода для создания отчета */
 					showReport();
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -227,22 +265,29 @@ public class createWindow {
 		reportButton.setBounds(202, 438, 198, 23);
 		frame.getContentPane().add(reportButton);
 		
+		/* Создание кнопки для авторизации администратора */
 		JButton passwordButton = new JButton("Войти");
 		passwordButton.setBounds(247, 54, 128, 23);
 		passwordPanel.add(passwordButton);
+		/* Создаем слушатель для кнопки */
 		passwordButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				/* Проверка на правильность введенного пароля */
 				if (passwordText.getText().equals(ADMIN_PASSWORD)) {
+					/* В случае ввода верного пароля, панель авторизации становится невидимой
+					 * Кнопка создания отчета становится видимой
+					 */
 					passwordPanel.setVisible(false);
 					reportButton.setVisible(true);
 				} else {
-					JOptionPane.showMessageDialog(null, "Не верный пароль администратора", "Ошибка", JOptionPane.WARNING_MESSAGE);
+					/* В случае ошибки ввода пароля, выводится сообщение об ошибке */
+					JOptionPane.showMessageDialog(null, "Неверный пароль администратора", "Ошибка", JOptionPane.WARNING_MESSAGE);
 				}
 					
 			}
 		});
+		/* Установка цвета кнопки */
 		passwordButton.setBackground(Color.PINK);
-		passwordButton.setForeground(Color.DARK_GRAY);
 	}
 	
 	//Метод setArrayValues реализующий добавление значений из textField-ов в массив
@@ -255,27 +300,30 @@ public class createWindow {
 		calcValues[5] = Integer.parseInt(soundText.getText());
 		calcValues[6] = Integer.parseInt(gzText.getText());
 	}
-	
+	/* Метод isNumeric проверяющий является ли введенная строка - числом */
 	public static boolean isNumeric(String str)  
 	{  
 	  try  
 	  {  
+		/* Попытка преобразовать значение типа String в Double */
 	    double d = Double.parseDouble(str);  
 	  }  
 	  catch(NumberFormatException nfe)  
 	  {  
+		/* При возникновении ошибок - возвращает false (значение не является числом) */  
 	    return false;  
 	  }  
+	  /* Если не было ошибок - возвращает true (значение является числом) */
 	  return true;  
 	}
-	
+	/* Метод isNumericValues проверяющий являются ли числами все введенные значения */
 	public boolean isNumericValues() {
-		if (	!isNumeric(widthText.getText())   ||
+		if (	!isNumeric(widthText.getText())  ||
 				!isNumeric(heightText.getText()) ||
-				!isNumeric(colorText.getText()) ||
-				!isNumeric(fpsText.getText()) ||
-				!isNumeric(timeText.getText()) ||
-				!isNumeric(soundText.getText()) ||
+				!isNumeric(colorText.getText())  ||
+				!isNumeric(fpsText.getText())    ||
+				!isNumeric(timeText.getText())   ||
+				!isNumeric(soundText.getText())  ||
 				!isNumeric(gzText.getText()) )
 			return false;
 		else
@@ -289,7 +337,9 @@ public class createWindow {
 	
 	//Метод isTextFieldEmpty реализующий проверку textField-ов на пустоту
 	public boolean isTextFieldEmpty() {
-		//getText() - берет текст из текстового поля, trim() - удаляет пробелы, isEmpty() - проверяет пустое значение или нет
+		/* getText() - берет значение из текстового поля, 
+		 * trim()    - удаляет пробелы, 
+		 * isEmpty() - проверяет пустое значение или нет */
 		if(		widthText.getText().trim().isEmpty()   ||
 				heightText.getText().trim().isEmpty() ||
 				colorText.getText().trim().isEmpty() ||
@@ -304,7 +354,7 @@ public class createWindow {
 			return false;
 	}
 	
-	//Метод toValidate реализующий проверку значений на положительность
+	/* Метод toValidate реализующий проверку значений на положительность */
 	public boolean toValidate(double textFieldValue) {
 		boolean er;
 		if (textFieldValue <= 0 || textFieldValue >= 1000000) 
@@ -314,17 +364,26 @@ public class createWindow {
 		return er;
 	}
 	
+	/* Метод showReport реализующй возможность создания txt файла с отчетом о расчетах */
 	public void showReport() throws Exception {
+		/* Открытие потока FileWriter. Открытие файла Oтчет.txt
+		 * Каждый раз при использовании метода showReport - файл перезаписывается
+		 * При отсутствии файла, файл создается 
+		 * write() - записывает значения в файл
+		 * close() - закрывает поток записи FileWriter
+		 * \n - перемещает ввод на строку вниз
+		 */
 		FileWriter nFile = new FileWriter("Отчет.txt");
-        nFile.write("Ширина изображения: " + widthText.getText() + "\n" +
-        			"Высота изображения: " + heightText.getText() + "\n" +
-        			"Глубина цвета: " + colorText.getText() + "\n" +
-        			"Количество кадров: " + fpsText.getText() + "\n" +
-        			"Длительность видео: " + timeText.getText() + "\n" +
-        			"Разрядность звука: " + soundText.getText() + "\n" +
-        			"Частота дискретизации: " + gzText.getText() + "\n" +
-        			"----------------------------------------------\n" +
-        			"Результат " + resultText.getText() + "\n");
+		
+        nFile.write("Ширина изображения: " 		+ widthText.getText() 	+ "\n" +
+        			"Высота изображения: " 		+ heightText.getText() 	+ "\n" +
+        			"Глубина цвета: " 			+ colorText.getText() 	+ "\n" +
+        			"Количество кадров: " 		+ fpsText.getText() 	+ "\n" +
+        			"Длительность видео: " 		+ timeText.getText() 	+ "\n" +
+        			"Разрядность звука: " 		+ soundText.getText() 	+ "\n" +
+        			"Частота дискретизации: " 	+ gzText.getText() 		+ "\n" +
+        			"------------------------------------------------" 	+ "\n" +
+        			"Результат " 				+ resultText.getText() 	+ "\n");
         nFile.close();
 	}
 }
