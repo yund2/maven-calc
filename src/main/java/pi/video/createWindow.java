@@ -235,6 +235,8 @@ public class createWindow {
 				if (passwordText.getText().equals(ADMIN_PASSWORD)) {
 					passwordPanel.setVisible(false);
 					reportButton.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "Не верный пароль администратора", "Ошибка", JOptionPane.WARNING_MESSAGE);
 				}
 					
 			}
