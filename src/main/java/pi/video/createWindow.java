@@ -241,7 +241,7 @@ public class createWindow {
 		passwordPanel.setLayout(null);
 		
 		JLabel passwordLabel = new JLabel("Пароль администратора:");
-		passwordLabel.setBounds(34, 28, 128, 14);
+		passwordLabel.setBounds(34, 28, 203, 14);
 		passwordPanel.add(passwordLabel);
 		
 		/* Создание текстового поля для ввода паролей */
